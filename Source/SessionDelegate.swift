@@ -108,16 +108,52 @@ open class SessionDelegate: NSObject {
 #if !os(watchOS)
 
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:readClosedFor:)`.
-    open var streamTaskReadClosed: ((URLSession, URLSessionStreamTask) -> Void)?
-
+    open var _streamTaskReadClosed: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskReadClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+            return _streamTaskReadClosed as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskReadClosed = newValue
+        }
+    }
+    
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:writeClosedFor:)`.
-    open var streamTaskWriteClosed: ((URLSession, URLSessionStreamTask) -> Void)?
+    open var _streamTaskWriteClosed: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskWriteClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+        return _streamTaskWriteClosed as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskWriteClosed = newValue
+        }
+    }
 
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:betterRouteDiscoveredFor:)`.
-    open var streamTaskBetterRouteDiscovered: ((URLSession, URLSessionStreamTask) -> Void)?
+    open var _streamTaskBetterRouteDiscovered: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskBetterRouteDiscovered: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+            return _streamTaskBetterRouteDiscovered as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskBetterRouteDiscovered = newValue
+        }
+    }
 
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:streamTask:didBecome:outputStream:)`.
-    open var streamTaskDidBecomeInputStream: ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)?
+    open var _streamTaskDidBecomeInputStream: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskDidBecomeInputStream: ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)? {
+        get {
+            return _streamTaskDidBecomeInputStream as? ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)
+        }
+        set {
+            _streamTaskDidBecomeInputStream = newValue
+        }
+    }
 
 #endif
 
@@ -560,7 +596,8 @@ extension SessionDelegate: URLSessionDownloadDelegate {
 // MARK: - URLSessionStreamDelegate
 
 #if !os(watchOS)
-
+    
+@available(iOSApplicationExtension 9.0, *)
 extension SessionDelegate: URLSessionStreamDelegate {
     /// Tells the delegate that the read side of the connection has been closed.
     ///

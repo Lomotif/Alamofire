@@ -654,6 +654,7 @@ open class SessionManager {
     ///
     /// - returns: The created stream `Request`.
     @discardableResult
+    @available(iOSApplicationExtension 9.0, *)
     open func stream(withHostName hostName: String, port: Int) -> Request {
         return stream(.stream(hostName, port))
     }
@@ -668,12 +669,14 @@ open class SessionManager {
     ///
     /// - returns: The created stream `Request`.
     @discardableResult
+    @available(iOSApplicationExtension 9.0, *)
     open func stream(with netService: NetService) -> Request {
         return stream(.netService(netService))
     }
 
     // MARK: Private - Stream Implementation
-
+    
+    @available(iOSApplicationExtension 9.0, *)
     private func stream(_ streamable: Streamable) -> Request {
         var streamTask: URLSessionStreamTask!
 
