@@ -106,18 +106,54 @@ open class SessionDelegate: NSObject {
     // MARK: URLSessionStreamDelegate Overrides
 
 #if !os(watchOS)
-
+    
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:readClosedFor:)`.
-    open var streamTaskReadClosed: ((URLSession, URLSessionStreamTask) -> Void)?
-
+    open var _streamTaskReadClosed: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskReadClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+            return _streamTaskReadClosed as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskReadClosed = newValue
+        }
+    }
+    
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:writeClosedFor:)`.
-    open var streamTaskWriteClosed: ((URLSession, URLSessionStreamTask) -> Void)?
-
+    open var _streamTaskWriteClosed: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskWriteClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+            return _streamTaskWriteClosed as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskWriteClosed = newValue
+        }
+    }
+    
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:betterRouteDiscoveredFor:)`.
-    open var streamTaskBetterRouteDiscovered: ((URLSession, URLSessionStreamTask) -> Void)?
-
+    open var _streamTaskBetterRouteDiscovered: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskBetterRouteDiscovered: ((URLSession, URLSessionStreamTask) -> Void)? {
+        get {
+            return _streamTaskBetterRouteDiscovered as? ((URLSession, URLSessionStreamTask) -> Void)
+        }
+        set {
+            _streamTaskBetterRouteDiscovered = newValue
+        }
+    }
+    
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:streamTask:didBecome:outputStream:)`.
-    open var streamTaskDidBecomeInputAndOutputStreams: ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)?
+    open var _streamTaskDidBecomeInputAndOutputStreams: Any?
+    @available(iOSApplicationExtension 9.0, *)
+    open var streamTaskDidBecomeInputAndOutputStreams: ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)? {
+        get {
+            return _streamTaskDidBecomeInputAndOutputStreams as? ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)
+        }
+        set {
+            _streamTaskDidBecomeInputAndOutputStreams = newValue
+        }
+    }
 
 #endif
 
