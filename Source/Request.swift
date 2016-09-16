@@ -578,7 +578,7 @@ open class UploadRequest: DataRequest {
 
 /// Specific type of `Request` that manages an underlying `URLSessionStreamTask`.
     
-@available(iOSApplicationExtension 9.0, *)
+@available(iOS 9.0, *)
 open class StreamRequest: Request {
     enum Streamable: TaskConvertible {
         case stream(hostName: String, port: Int)

@@ -109,7 +109,7 @@ open class SessionDelegate: NSObject {
     
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:readClosedFor:)`.
     open var _streamTaskReadClosed: Any?
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open var streamTaskReadClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
         get {
             return _streamTaskReadClosed as? ((URLSession, URLSessionStreamTask) -> Void)
@@ -121,7 +121,7 @@ open class SessionDelegate: NSObject {
     
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:writeClosedFor:)`.
     open var _streamTaskWriteClosed: Any?
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open var streamTaskWriteClosed: ((URLSession, URLSessionStreamTask) -> Void)? {
         get {
             return _streamTaskWriteClosed as? ((URLSession, URLSessionStreamTask) -> Void)
@@ -133,7 +133,7 @@ open class SessionDelegate: NSObject {
     
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:betterRouteDiscoveredFor:)`.
     open var _streamTaskBetterRouteDiscovered: Any?
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open var streamTaskBetterRouteDiscovered: ((URLSession, URLSessionStreamTask) -> Void)? {
         get {
             return _streamTaskBetterRouteDiscovered as? ((URLSession, URLSessionStreamTask) -> Void)
@@ -145,7 +145,7 @@ open class SessionDelegate: NSObject {
     
     /// Overrides default behavior for URLSessionStreamDelegate method `urlSession(_:streamTask:didBecome:outputStream:)`.
     open var _streamTaskDidBecomeInputAndOutputStreams: Any?
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open var streamTaskDidBecomeInputAndOutputStreams: ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)? {
         get {
             return _streamTaskDidBecomeInputAndOutputStreams as? ((URLSession, URLSessionStreamTask, InputStream, OutputStream) -> Void)
@@ -201,7 +201,7 @@ open class SessionDelegate: NSObject {
             }
         #endif
 
-        if #available(iOSApplicationExtension 9.0, *) {
+        if #available(iOS 9.0, *) {
             #if !os(watchOS)
                 switch selector {
                 case #selector(URLSessionStreamDelegate.urlSession(_:readClosedFor:)):
@@ -682,7 +682,7 @@ extension SessionDelegate: URLSessionStreamDelegate {
     ///
     /// - parameter session:    The session.
     /// - parameter streamTask: The stream task.
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open func urlSession(_ session: URLSession, readClosedFor streamTask: URLSessionStreamTask) {
         streamTaskReadClosed?(session, streamTask)
     }
@@ -691,7 +691,7 @@ extension SessionDelegate: URLSessionStreamDelegate {
     ///
     /// - parameter session:    The session.
     /// - parameter streamTask: The stream task.
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open func urlSession(_ session: URLSession, writeClosedFor streamTask: URLSessionStreamTask) {
         streamTaskWriteClosed?(session, streamTask)
     }
@@ -700,7 +700,7 @@ extension SessionDelegate: URLSessionStreamDelegate {
     ///
     /// - parameter session:    The session.
     /// - parameter streamTask: The stream task.
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open func urlSession(_ session: URLSession, betterRouteDiscoveredFor streamTask: URLSessionStreamTask) {
         streamTaskBetterRouteDiscovered?(session, streamTask)
     }
@@ -711,7 +711,7 @@ extension SessionDelegate: URLSessionStreamDelegate {
     /// - parameter streamTask:   The stream task.
     /// - parameter inputStream:  The new input stream.
     /// - parameter outputStream: The new output stream.
-    @available(iOSApplicationExtension 9.0, *)
+    @available(iOS 9.0, *)
     open func urlSession(
         _ session: URLSession,
         streamTask: URLSessionStreamTask,
